@@ -1,0 +1,68 @@
+body {
+  font-size: 12px !important;
+}
+
+.ui.secondary.inverted.pointing.menu {
+  border: none !important;
+}
+.ui.menu>.container {
+  display: inline !important;
+}
+
+.ui.menu .item:before {
+    background: none !important
+}
+.contact-info {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    letter-spacing: .05em;
+    display: inline-block !important;
+    font-style: normal;
+    line-height: 1.43571;
+    text-align: center;
+}
+.ui.segment {
+  border-radius: 0px !important;
+}
+
+.reveal-inline-block {
+    display: inline-block !important;
+}
+
+.contact-info p + p {
+    margin-left: 68px;
+}
+
+.ui.inverted.header {
+  margin-top: 2em !important;
+}
+.fa-phone {
+  margin-right: 5px;
+}
+.four.wide.column {
+  text-align: center;
+}
+
+.ui.grid span{
+  margin-top: 18px;
+}
+
+.navbar-light .navbar-toggler {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    background-color: white;
+    opacity: 0.6;
+  }
+  .ui.header:first-child {
+    margin-top: 1em !important;
+  }
+.navig-bar {
+  background: transparent !important;
+  padding-top: 0px !important;
+}
