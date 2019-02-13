@@ -5,6 +5,9 @@ body {
 .ui.secondary.inverted.pointing.menu {
   border: none !important;
 }
+.ui.secondary.pointing.menu .item {
+   padding: 0 0 !important;
+}
 .ui.menu>.container {
   display: inline !important;
 }
@@ -65,4 +68,7 @@ body {
 .navig-bar {
   background: transparent !important;
   padding-top: 0px !important;
+}
+.navbar {
+  padding: 0 0 !important;
 }
