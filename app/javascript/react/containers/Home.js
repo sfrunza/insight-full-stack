@@ -16,8 +16,8 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-import NavigationBar from '../components/NavigationBar'
 import Nav from 'react-bootstrap/Nav'
+import HomepageHeading from '../components/HomepageHeading'
 
  const getWidth = () => {
    const isSSR = typeof window === 'undefined'
@@ -25,63 +25,17 @@ import Nav from 'react-bootstrap/Nav'
    return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
  }
 
-const HomepageHeading = ({ mobile }) => (
-  <div>
-  <NavigationBar />
-  <Container text>
-    <Header
-      as='h1'
-      content='Insight Moving Company'
-      inverted
-      style={{
-        fontSize: mobile ? '2em' : '4em',
-        fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
-      }}
-    />
-    <Header
-      as='h2'
-      content='Making your moving least painful'
-      inverted
-      style={{
-        fontSize: mobile ? '1.5em' : '1.7em',
-        fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
-      }}
-    />
-    <Button primary size='huge'>
-      Get A Quote Now
-      <Icon name='right arrow' />
-    </Button>
-  </Container>
-  </div>
-)
-HomepageHeading.propTypes = {
-  mobile: PropTypes.bool,
-}
 
-
-
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
  class DesktopContainer extends Component {
    state = {}
 
    render() {
      const { children } = this.props
-     const { fixed } = this.state
 
      return (
        <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} >
        <InlineStyle />
-         <Visibility once={false}>
-           <Segment inverted textAlign='center' style={{ minHeight: 500, padding: '1em 0em' }} vertical className="home-top">
-             <HomepageHeading />
-           </Segment>
-         </Visibility>
+             <HomepageHeading headerTitle="Insight Moving Company" headerDescription="Making your moving least painful" class="home-top"/>
            <Container className="our-process">
              <Grid className="grid-our-process">
                <Grid.Column width={4} className="process-list"><i className="far fa-calendar-check"></i><span> </span>Book our service</Grid.Column>
@@ -106,19 +60,19 @@ HomepageHeading.propTypes = {
              <Grid>
                <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-home"></i></span><Header as='h4' style={{ fontSize: '2em'}}>
                  <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Local Moving</Nav.Link>
-               </Header>We offer a comprehensive menu of moving services to suit your needs, timescale and budget.</Grid.Column>
+               </Header><p>We offer a comprehensive menu of moving services to suit your needs, timescale and budget.</p></Grid.Column>
 
                <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-road"></i></span><Header as='h4' style={{ fontSize: '2em' }}>
                  <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Long Distance</Nav.Link>
-               </Header>We provide with long distance and international moving to keep your property in safe.</Grid.Column>
+               </Header><p>We provide with long distance and international moving to keep your property in safe.</p></Grid.Column>
 
                <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-briefcase"></i></span><Header as='h4' style={{ fontSize: '2em' }}>
-                 <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Moving Your Business</Nav.Link>
-               </Header>We have expertise and resources to plan and implement an effective office removal to ensure business continuity for you.</Grid.Column>
+                 <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Packaging Service</Nav.Link>
+               </Header><p>We provide complete packing services, including professional packers, professional moving supplies, and full-service relocation packing.</p></Grid.Column>
 
                <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-boxes"></i></span><Header as='h4' style={{ fontSize: '2em' }}>
                  <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Storage</Nav.Link>
-               </Header>We are the largest provider of storage facilities in the US, providing safe and secure furniture storage.</Grid.Column>
+               </Header><p>We are the largest provider of storage facilities in the US, providing safe and secure furniture storage.</p></Grid.Column>
              </Grid>
            </Container>
          {children}
@@ -142,9 +96,7 @@ class MobileContainer extends Component {
     return (
       <Responsive as={Sidebar.Pushable} maxWidth={Responsive.onlyMobile.maxWidth}>
       <MobileStyle />
-          <Segment  className="home-top" inverted textAlign='center' style={{ minHeight: 350, padding: '1em 0em' }}>
-            <HomepageHeading mobile />
-          </Segment>
+            <HomepageHeading mobile headerTitle="Insight Moving Company" headerDescription="Making your moving least painful" class='home-top' mobile/>
             <Container className="our-process">
               <Grid stackable>
                 <Grid.Column width={4} className="process-list"><i className="far fa-calendar-check"></i><span> </span>Book our service</Grid.Column>
@@ -154,10 +106,10 @@ class MobileContainer extends Component {
               </Grid>
             </Container>
             <Container text style={{ padding: '2em 0em' }}>
-              <Header as='h3' style={{ fontSize: '2em' }}>
+              <Header as='h3' style={{ fontSize: '1em' }}>
                 OUR MISSION IS TO MOVE YOU, NOT JUST YOUR BOXES.
               </Header>
-              <p style={{ fontSize: '1em', padding: '0 2% 0 2%', textAlign: 'center' }}>
+              <p style={{ fontSize: '15px', padding: '0 2% 0 2%', textAlign: 'center' }}>
                 We're a professional local moving company created to move more than just your boxes. We'll move you
                 with our hard work and genuine smiles.
               </p>
@@ -173,8 +125,8 @@ class MobileContainer extends Component {
                 </Header><p>We provide with long distance and international moving to keep your property in safe.</p></Grid.Column>
 
                 <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-briefcase"></i></span><Header as='h4' style={{ fontSize: '2em' }}>
-                  <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Moving Your Business</Nav.Link>
-                </Header><p>We have expertise and resources to plan and implement an effective office removal to ensure business continuity for you.</p></Grid.Column>
+                  <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Packaging Service</Nav.Link>
+                </Header><p>We provide complete packing services, including professional packers, professional moving supplies, and full-service relocation packing.</p></Grid.Column>
 
                 <Grid.Column width={4} ><span className="services-icons"><i className="fas fa-boxes"></i></span><Header as='h4' style={{ fontSize: '2em' }}>
                   <Nav.Link style={{ color: '#5A5A5A' }} href="/services">Storage</Nav.Link>
@@ -231,7 +183,7 @@ const Home = () => (
       </Container>
       <Container style={{textAlign: "center", padding: ' 2em 0em'}}>
           <Button primary size='huge'>
-            Get A Quote Now
+            Get Started
             <Icon name='right arrow' />
           </Button>
       </Container>
@@ -267,7 +219,7 @@ const MobileStyle = () => (
         text-align: center;
       }
     .ui.grid>[class*="four wide"].column.process-list {
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
     }
     .ui.grid>[class*="four wide"].column span.services-icons i {
@@ -299,6 +251,10 @@ const MobileStyle = () => (
           background-position: center !important; /* Center the image */
           background-repeat: no-repeat !important; /* Do not repeat the image */
           background-size: cover !important;
+          min-height: 350px;
+      }
+      .ui.grid>[class*="four wide"].column p {
+          font-size: 15px !important;
       }
 
 
@@ -376,6 +332,7 @@ const InlineStyle = () => (
           background-position: center !important; /* Center the image */
           background-repeat: no-repeat !important; /* Do not repeat the image */
           background-size: cover !important;
+          min-height: 500px;
       }
       .testimonial-grid {
         text-align: center;

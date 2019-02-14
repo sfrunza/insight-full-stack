@@ -6,7 +6,7 @@ body {
   border: none !important;
 }
 .ui.secondary.pointing.menu .item {
-   padding: 0 0 !important;
+   padding: 0 1rem !important;
 }
 .ui.menu>.container {
   display: inline !important;
@@ -39,9 +39,6 @@ body {
     margin-left: 68px;
 }
 
-.ui.inverted.header {
-  margin-top: 2em !important;
-}
 .fa-phone {
   margin-right: 5px;
 }
@@ -71,4 +68,7 @@ body {
 }
 .navbar {
   padding: 0 0 !important;
+}
+.navbar-brand {
+  margin-right: 0 !important;
 }

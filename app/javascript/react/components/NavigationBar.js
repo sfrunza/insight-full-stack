@@ -54,7 +54,7 @@
             >
               <Container>
                <Navbar collapseOnSelect expand="lg" bg="transparent">
-                 <Menu.Item><Navbar.Brand href="/">Insight Moving Company</Navbar.Brand></Menu.Item>
+                 <Menu.Item><Nav.Link  href="/" to="/">Insight Moving Company</Nav.Link></Menu.Item>
                  <Navbar.Toggle aria-controls="basic-navbar-nav" />
                  <Navbar.Collapse className="justify-content-center">
                    <Nav className="mr-auto">
