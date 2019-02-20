@@ -16,7 +16,7 @@ import NavigationBar from './NavigationBar'
 const HomepageHeading =  props => {
 
   const TopPage = ({ mobile }) => (
-    <Container text>
+    <Container text className="animated fadeInDown delay-0.8s">
       <Header
         as='h1'
         content={props.headerTitle}

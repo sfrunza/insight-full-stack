@@ -8,6 +8,10 @@ body {
 .ui.secondary.pointing.menu .item {
    padding: 0 1rem !important;
 }
+.ui.large.top.fixed.menu .item {
+   padding: 0.5em 1rem !important;
+}
+
 .ui.menu>.container {
   display: inline !important;
 }
@@ -15,18 +19,7 @@ body {
 .ui.menu .item:before {
     background: none !important
 }
-.contact-info {
-    position: absolute;
-    top: 180px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    letter-spacing: .05em;
-    display: inline-block !important;
-    font-style: normal;
-    line-height: 1.43571;
-    text-align: center;
-}
+
 .ui.segment {
   border-radius: 0px !important;
 }
