@@ -19,7 +19,7 @@ const App = props => {
           <Route path='/services' component={Services} />
           <Route path='/prices' component={Prices} />
           <Route path='/work' component={Work} />
-          <Footer />
+          {/* <Footer /> */}
       </div>
     </BrowserRouter>
   )
