@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
 import GoogleMap from 'google-distance-matrix';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
-import API_KEY from './config_keys'
 
 class Calculator extends Component {
   constructor(props) {
-
     super(props);
         this.state = {
           distance: [],
@@ -20,7 +18,7 @@ class Calculator extends Component {
           submittedOrigin: '',
           submittedDestination: '',
           submitted: false,
-          apiKey: API_KEY,
+          apiKey: process.env.REACT_APP_API_KEY,
           distanceText:'testing the distance text'
         }
         this.handleChange = this.handleChange.bind(this)
@@ -127,6 +125,7 @@ class Calculator extends Component {
     let origin_name = this.state.submittedOrigin
     let destination_name = this.state.submittedDestination
     let distance_mile = this.state.distanceText
+    let gg = process.env.REACT_APP_API_KEY
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -149,7 +148,9 @@ class Calculator extends Component {
           </Form.Group>
         </Form>
         <strong>onChange:</strong>
+        <strong>{gg}</strong>
           <pre>{this.state.origin}</pre>
+
           <pre>{this.state.destination}</pre>
         <strong>onSubmit:</strong>
           <pre>{origin_name}</pre>
@@ -162,5 +163,5 @@ class Calculator extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey:(API_KEY)
+  apiKey:(process.env.REACT_APP_API_KEY)
 })(Calculator)

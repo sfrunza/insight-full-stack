@@ -32,4 +32,3 @@
 yarn-debug.log*
 .yarn-integrity
 coverage/*
-/app/javascript/react/components/config_keys.js
