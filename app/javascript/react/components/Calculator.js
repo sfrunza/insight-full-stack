@@ -18,7 +18,7 @@ class Calculator extends Component {
           submittedOrigin: '',
           submittedDestination: '',
           submitted: false,
-          apiKey: process.env.REACT_APP_API_KEY,
+          apiKey: "AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ",
           distanceText:'testing the distance text'
         }
         this.handleChange = this.handleChange.bind(this)
@@ -125,7 +125,6 @@ class Calculator extends Component {
     let origin_name = this.state.submittedOrigin
     let destination_name = this.state.submittedDestination
     let distance_mile = this.state.distanceText
-    let gg = process.env.REACT_APP_API_KEY
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -148,7 +147,6 @@ class Calculator extends Component {
           </Form.Group>
         </Form>
         <strong>onChange:</strong>
-        <strong>{gg}</strong>
           <pre>{this.state.origin}</pre>
 
           <pre>{this.state.destination}</pre>
@@ -163,5 +161,5 @@ class Calculator extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey:(process.env.REACT_APP_API_KEY)
+  apiKey:("AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ")
 })(Calculator)
