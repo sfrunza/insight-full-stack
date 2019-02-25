@@ -35,7 +35,7 @@ import HomepageHeading from '../components/HomepageHeading'
      return (
        <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} >
        <InlineStyle />
-             <HomepageHeading headerTitle="Insight Moving Company" headerDescription="Making your moving least painful" class="home-top"/>
+             <HomepageHeading headerTitle="Moving Company" headerDescription="Making your moving least painful" class="home-top"/>
            <Container className="our-process">
              <Grid className="grid-our-process">
                <Grid.Column width={4} className="process-list"><i className="far fa-calendar-check"></i><span> </span>Book our service</Grid.Column>
@@ -96,7 +96,7 @@ class MobileContainer extends Component {
     return (
       <Responsive as={Sidebar.Pushable} maxWidth={Responsive.onlyMobile.maxWidth}>
       <MobileStyle />
-            <HomepageHeading mobile headerTitle="Insight Moving Company" headerDescription="Making your moving least painful" class='home-top' mobile/>
+            <HomepageHeading mobile headerTitle="Moving Company" headerDescription="Making your moving least painful" class='home-top' mobile/>
             <Container className="our-process">
               <Grid stackable>
                 <Grid.Column width={4} className="process-list"><i className="far fa-calendar-check"></i><span> </span>Book our service</Grid.Column>

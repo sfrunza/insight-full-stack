@@ -11,13 +11,12 @@ import {
   Grid,
   Sidebar
 } from 'semantic-ui-react'
-
+import Calculator from '../components/Calculator'
 
  const getWidth = () => {
    const isSSR = typeof window === 'undefined'
    return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
  }
-
 
  class DesktopContainer extends Component {
    render() {
@@ -35,7 +34,6 @@ import {
  DesktopContainer.propTypes = {
    children: PropTypes.node,
  }
-
 
 class MobileContainer extends Component {
   render() {
@@ -60,7 +58,6 @@ const ResponsiveContainer = ({ children }) => (
     <MobileContainer>{children}</MobileContainer>
   </div>
 )
-
 
 const Work = () => (
   <ResponsiveContainer>
@@ -89,7 +86,9 @@ const Work = () => (
         </Grid>
       </Segment>
 
+
       </Container>
+      <Calculator />
   </ResponsiveContainer>
 )
 export default Work

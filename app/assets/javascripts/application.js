@@ -15,6 +15,5 @@
 //= require foundation
 //= require activestorage
 //= require_tree .
-//= require gmaps/google
 
 $(function(){ $(document).foundation(); });
