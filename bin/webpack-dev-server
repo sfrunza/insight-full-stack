@@ -2,6 +2,7 @@
 
 ENV["RAILS_ENV"] ||= ENV["RACK_ENV"] || "development"
 ENV["NODE_ENV"]  ||= "development"
+ENV["REACT_APP_API_KEY"]  = "AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ"
 
 require "pathname"
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
