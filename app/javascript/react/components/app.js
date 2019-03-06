@@ -7,6 +7,7 @@ import NavigationBar from './NavigationBar'
 import Footer from './Footer'
 import Prices from '../containers/Prices'
 import Work from '../containers/Work'
+import CalculatorResult from '../containers/CalculatorResult'
 import 'semantic-ui-css/semantic.min.css'
 
 
@@ -19,6 +20,7 @@ const App = props => {
           <Route path='/services' component={Services} />
           <Route path='/prices' component={Prices} />
           <Route path='/work' component={Work} />
+          <Route path='/calculator_result' component={CalculatorResult} />
           {/* <Footer /> */}
       </div>
     </BrowserRouter>

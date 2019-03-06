@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/services' => 'static_pages#index'
   get '/prices' => 'static_pages#index'
   get '/work' => 'static_pages#index'
+  get '/calculator_result' => 'static_pages#index'
+
 
 
   namespace :api do
