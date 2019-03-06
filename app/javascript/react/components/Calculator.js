@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
-import GoogleMap from 'google-distance-matrix';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
+import MapWithADirectionsRenderer from './MapsRender'
 
 
 class Calculator extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          distance_mi: '',
-          time: '',
-          city: 0,
           origin: '',
           origin_lat:'',
           origin_lng: '',
@@ -25,7 +22,6 @@ class Calculator extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.renderMap = this.renderMap.bind(this)
         this.findDsitance = this.findDsitance.bind(this)
   }
 
@@ -100,61 +96,15 @@ class Calculator extends Component {
           let originList = response.originAddresses;
           let destinationList = response.destinationAddresses;
           let outputDiv = document.getElementById('output');
-          outputDiv.innerHTML = '';
 
-          var showGeocodedAddressOnMap = function(asDestination) {
-
-              return function(results, status) {
-                if (status === 'OK') {
-                  map.fitBounds(bounds.extend(results[0].geometry.location));
-                  markersArray.push(new google.maps.Marker({
-                    map: map,
-                    position: results[0].geometry.location,
-
-                  }));
-                } else {
-                  alert('Geocode was not successful due to: ' + status);
+            let results = response.rows[0].elements;
+              if(response.rows[0].elements[0].status !== "ZERO_RESULTS"){
+                  outputDiv.innerHTML = results[0].distance.text + ' in ' +
+                                        results[0].duration.text + '<br>';
                 }
-              };
-            };
-
-
-          for (let i = 0; i < originList.length; i++) {
-            let results = response.rows[i].elements;
-            for (let j = 0; j < results.length; j++) {
-              outputDiv.innerHTML += results[j].distance.text + ' in ' +
-                  results[j].duration.text + '<br>';
-            }
-          }
         }
       });
     }
-
-
-  renderMap(){
-    let o_lat = parseFloat(this.state.origin_lat)
-    let o_lng = parseFloat(this.state.origin_lng)
-    let d_lat = parseFloat(this.state.destination_lat)
-    let d_lng = parseFloat(this.state.destination_lng)
-    return(
-      <Map google={this.props.google}
-          style={{width: '100%', height: '50%', position: 'relative'}}
-          className={'map'}
-          zoom={10}
-          center={{
-            lat: o_lat,
-            lng: o_lng
-          }}>
-        <Marker
-          name={this.state.submittedOrigin}
-          position={{lat: o_lat, lng: o_lng}} />
-        <Marker
-          name={this.state.submittedDestination}
-          position={{lat: d_lat, lng: d_lng}} />
-      </Map>
-    )
-  }
-
 
   render() {
     let handleSubmit = (formPayload) => this.handleSubmit(formPayload)
@@ -185,8 +135,11 @@ class Calculator extends Component {
           <pre>{origin_name}</pre>
           <pre>{destination_name}</pre>
           <div id="output">{this.state.submitted && this.findDsitance()}</div>
-
-          {this.state.submitted && this.renderMap()}
+          <div>{this.state.submitted && <MapWithADirectionsRenderer
+            origin={this.state.origin}
+            destination={this.state.destination}
+            api={this.state.apiKey}
+            />}</div>
 
       </div>
     )
