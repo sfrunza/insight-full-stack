@@ -11,7 +11,6 @@ import {
   Grid,
   Sidebar
 } from 'semantic-ui-react'
-import Calculator from '../components/Calculator'
 
  const getWidth = () => {
    const isSSR = typeof window === 'undefined'
@@ -85,10 +84,7 @@ const Work = () => (
           </Grid.Row>
         </Grid>
       </Segment>
-
-
       </Container>
-      <Calculator />
   </ResponsiveContainer>
 )
 export default Work

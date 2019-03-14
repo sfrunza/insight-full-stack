@@ -1,171 +1,102 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react'
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  DirectionsRenderer,
-} from "react-google-maps";
-import { compose, withProps, lifecycle } from "recompose";
+import { Form, Select, Container, Segment, Header } from 'semantic-ui-react'
+import CalculatorResult from '../containers/CalculatorResult'
+
+
+const movingTypeOptions = [
+  { key: 'elv', text: 'Elevator Bldg.', value: 'elevbldg' },
+  { key: 'grfloor', text: 'No Stairs - Ground Floor', value: 'grfloor' },
+  { key: '2floor', text: 'Stairs - 2nd Floor', value: '2floor' },
+  { key: '3floor', text: 'Stairs - 3rd Floor', value: '3floor' },
+  { key: '4floor', text: 'Stairs - 4th Floor', value: '4floor' },
+  { key: '5floor', text: 'Stairs 5 or Higher - N/A ', value: '5floor', disabled: true },
+  { key: 'private', text: 'Private House', value: 'private' },
+  { key: 'storage', text: 'Storage Unit', value: 'storage' },
+]
+const movingSizeOptions = [
+  { key: 'room', text: 'One Room or less (<1000 lbs)', value: 'room' },
+  { key: 'studio', text: 'Studio Apt.', value: 'studio' },
+  { key: 'onebed', text: '1 Bedroom Apt.', value: 'onebed' },
+  { key: 'twobed', text: '2 Bedroom Apt.', value: 'twobed' },
+  { key: 'threebed', text: '3+ Bedroom Apt.', value: 'threebed' },
+  { key: 'twohouse', text: '2 Bedroom House/Townhouse', value: 'twohouse' },
+  { key: 'threehouse', text: '3 Bedroom House/Townhouse', value: 'threehouse' },
+  { key: 'fourhouse', text: '4+ Bedroom House/Townhouse', value: 'fourhouse' },
+  { key: 'commercial', text: 'Office / Commercial Moving', value: 'commercial' },
+]
+const style = {
+  h1: {
+    fontSize: '51px',
+    color: 'white',
+    fontWeight: 'lighter'
+  },
+  h2: {
+    color: 'white',
+    fontSize: '22px',
+    fontWeight: 'lighter'
+  },
+}
 
 class Calculator extends Component {
   constructor(props) {
     super(props);
         this.state = {
+          moveDate: '',
+          movingSize: '',
+          typeFrom: '',
+          typeTo: '',
           origin: '',
-          origin_lat:'',
-          origin_lng: '',
-          destination_lat:'',
-          destination_lng: '',
           destination: '',
-          submittedOrigin: '',
-          submittedDestination: '',
           submitted: false,
-          apiKey: "AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ",
-          distanceText:'testing the distance text'
+          redirect: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.findDsitance = this.findDsitance.bind(this)
-        this.renderMap = this.renderMap.bind(this)
+
   }
 
-  handleChange(event){
-    event.preventDefault();
-    let value = event.target.value
-    let name = event.target.name
-    this.setState({ [name]: value })
-  }
+  handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit() {
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.origin}&result_type=postal_code&sensor=true&key=${this.state.apiKey}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        let city_origin = body.results[0].formatted_address
-        let lat = body.results[0].geometry.location.lat
-        let lng = body.results[0].geometry.location.lng
-        this.setState({ submittedOrigin: city_origin, origin_lat: lat, origin_lng: lng })
-      })
-
-      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.destination}&result_type=postal_code&sensor=true&key=${this.state.apiKey}`)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        let city_destination = body.results[0].formatted_address
-        let lat = body.results[0].geometry.location.lat
-        let lng = body.results[0].geometry.location.lng
-        this.setState({ submittedDestination: city_destination, destination_lat: lat, destination_lng: lng }, () => { this.findDsitance() })
-      })
-    this.setState({ submitted: true });
-
+    this.setState({  submitted: true, redirect: true })
   }
-   findDsitance() {
-      let bounds = new google.maps.LatLngBounds;
-      let markersArray = [];
-      let origin1 = {lat: parseFloat(this.state.origin_lat), lng: parseFloat(this.state.origin_lng)};
-      let destinationB = {lat: parseFloat(this.state.destination_lat), lng: parseFloat(this.state.destination_lng)};
-      let geocoder = new google.maps.Geocoder;
-      let service = new google.maps.DistanceMatrixService;
-      service.getDistanceMatrix({
-        origins: [origin1],
-        destinations: [destinationB],
-        travelMode: 'DRIVING',
-        unitSystem: google.maps.UnitSystem.IMPERIAL,
-        avoidHighways: false,
-        avoidTolls: false
-      }, function(response, status) {
-
-        if (status !== 'OK') {
-          alert('Error was: ' + status);
-        } else {
-          let originList = response.originAddresses;
-          let destinationList = response.destinationAddresses;
-          let outputDiv = document.getElementById('output');
-
-            let results = response.rows[0].elements;
-              if(response.rows[0].elements[0].status !== "ZERO_RESULTS"){
-                  outputDiv.innerHTML = results[0].distance.text + ' in ' +
-                                        results[0].duration.text + '<br>';
-                }
-        }
-      });
-    }
-    renderMap(){
-        let origin = this.state.origin
-        let destination = this.state.destination
-        const MapWithADirectionsRenderer = compose(
-          withProps({
-            googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${this.state.apiKey}&v=3.exp&libraries=geometry,drawing,places`,
-            loadingElement: <div style={{ height: `100%` }} />,
-            containerElement: <div style={{ height: `400px` }} />,
-            mapElement: <div style={{ height: `100%` }} />,
-          }),
-          withScriptjs,
-          withGoogleMap,
-
-          lifecycle({
-            componentDidMount() {
-              const DirectionsService = new google.maps.DirectionsService();
-              let origin_point = origin
-              let destination_poin = destination
-              DirectionsService.route({
-                origin: origin_point,
-                destination: destination_poin,
-                travelMode: google.maps.TravelMode.DRIVING,
-              }, (result, status) => {
-                if (status === google.maps.DirectionsStatus.OK) {
-                  this.setState({
-                    directions: result,
-                  });
-                }
-              });
-            }
-          })
-        )(props =>
-          <GoogleMap
-            defaultZoom={7}
-            defaultCenter={new google.maps.LatLng(42.5659907, -72.2317007)}
-          >
-            {props.directions && <DirectionsRenderer directions={props.directions} />}
-          </GoogleMap>
-        );
-        return(
-          <MapWithADirectionsRenderer />
-        )
-    }
 
   render() {
-    let origin_name = this.state.submittedOrigin
-    let destination_name = this.state.submittedDestination
-    let distance_mile = this.state.distanceText
+    if(this.state.submitted){
+
+      return(
+        <div>
+          {this.state.submitted && <CalculatorResult
+                  origin={this.state.origin}
+                  destination={this.state.destination}
+                  submitted={this.state.submitted}
+                  />}
+        </div>
+      )
+    } else {
     return (
-      <div>
+      <div className='form-container animated fadeInDown delay-0.8s'>
+        <Header className="calc-header" as='h1' content='Get Your Quote Now' style={style.h1} textAlign='center' />
+        <Header className="calc-description" as='h2' content='Local and Long Distance Moving Cost Calculator' style={style.h2} textAlign='center' />
+        <Container text className="calc-form">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
+        <Segment>
+          <Form.Group >
+            <Form.Input
+              placeholder='Move Date'
+              name='moveDate'
+              type='number'
+              value={this.state.moveDate}
+              onChange={this.handleChange}
+              className="zip-field"
+            />
             <Form.Input
               placeholder='ZipCode'
               name='origin'
               type='number'
               value={this.state.origin}
               onChange={this.handleChange}
+              className="zip-field"
             />
             <Form.Input
               placeholder='ZipCode'
@@ -173,20 +104,49 @@ class Calculator extends Component {
               type='number'
               value={this.state.destination}
               onChange={this.handleChange}
+              className="zip-field"
             />
-            <Form.Button content='Submit'/>
-          </Form.Group>
+            </Form.Group>
+            </Segment>
+            <Segment>
+            <Form.Group>
+            <Form.Select
+              name='typeFrom'
+              onChange={this.handleChange}
+              control={Select}
+              options={movingTypeOptions}
+              placeholder='Type From...'
+            />
+            <Form.Select
+              name='typeTo'
+              onChange={this.handleChange}
+              control={Select}
+              options={movingTypeOptions}
+              placeholder='Type To...'
+            />
+            </Form.Group>
+            </Segment>
+            <Segment>
+            <Form.Group>
+            <Form.Select
+              name='movingSize'
+              onChange={this.handleChange}
+              control={Select}
+              options={movingSizeOptions}
+              placeholder='Select size of move...'
+            />
+            </Form.Group>
+            </Segment>
+            <Form.Button color='blue' style={{ width: "100%"}} content='Calculate'/>
         </Form>
-          <pre>{origin_name}</pre>
-          <pre>{destination_name}</pre>
-          <div id="output">{this.state.submitted && this.findDsitance()}</div>
-          <div>{this.state.submitted && this.renderMap()}</div>
 
+        </Container>
+        <strong>onChange:</strong>
+        <div>{this.state.moveDate}<br></br>{this.state.origin}<br></br> {this.state.destination}<br></br> {this.state.typeFrom}<br></br>{this.state.typeTo}<br></br> {this.state.movingSize}</div>
       </div>
     )
   }
+  }
 }
 
-export default GoogleApiWrapper({
-  apiKey:("AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ")
-})(Calculator)
+export default Calculator

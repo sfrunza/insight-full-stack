@@ -1,0 +1,35 @@
+body #app .ui.segment {
+     position: relative;
+     background: none;
+     -webkit-box-shadow: none;
+     box-shadow: none;
+      margin: 0rem 0;
+      padding: 0em 0em;
+      border-radius: none;
+      border: none;
+}
+body #app .ui.segment .fields .field{
+     width: 100%;
+     border-radius: none;
+}
+body #app .ui.segment .fields .field{
+     width: 100%;
+}
+body #app .ui.segment .fields .zip-field{
+     width: 33.33%;
+}
+
+ body #app .calc-form {
+    max-width: 495px !important;
+}
+body #app .ui.dropdown .menu>.item{
+  padding: 0.4rem 1rem !important;
+}
+
+body #app .calc-header {
+  margin-top: 0 !important;
+  margin-bottom: 0
+}
+body #app .calc-description {
+  margin-top: 0 !important;
+}
