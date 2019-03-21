@@ -33,3 +33,18 @@ body #app .calc-header {
 body #app .calc-description {
   margin-top: 0 !important;
 }
+
+body #app.ui.form .field .ui.input input, .ui.form .fields .field .ui.input input {
+    width: 100%;
+}
+
+.btn-primary {
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-group.col-md-4 input {
+  border-radius: 4px !important;
+  margin-bottom: 0 !important;
+
+}
