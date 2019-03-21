@@ -24,6 +24,9 @@ class CalculatorResult extends Component {
           apiKey: "AIzaSyADEDKabHN5FBcOroOU1W7BzUam0Az8gGQ",
           distanceText:'testing the distance text'
         }
+        this.renderMap = this.renderMap.bind(this)
+        this.findDsitance = this.findDsitance.bind(this)
+        this.handleResult = this.handleResult.bind(this)
 
 
   }
@@ -91,8 +94,7 @@ class CalculatorResult extends Component {
 
             let results = response.rows[0].elements;
               if(response.rows[0].elements[0].status !== "ZERO_RESULTS"){
-                  outputDiv.innerHTML = results[0].distance.text + ' in ' +
-                                        results[0].duration.text + '<br>';
+                  outputDiv.innerHTML =` distance: ${results[0].distance.text}`
                 }
         }
       });
@@ -140,6 +142,92 @@ class CalculatorResult extends Component {
           <MapWithADirectionsRenderer />
         )
     }
+    handleResult(){
+      if(this.props.movingSize === "Studio apartment"){
+        return(
+          <div>
+          <label className="description crew"><b>2</b>  Movers Crew</label>
+                   <span className="pricing-rate">
+                       <span className="pricing-currency highlight animate-hover">$</span>
+                       <span className="pricing-amount highlight animate-hover">80</span>
+                       <span className="pricing-term">/ hour</span>
+                   </span>
+                   <label className="description">Estimated job time</label>
+                    <span className="estimated-time">
+                        <span className="estimated-amount orange-text">2 - 4</span>
+                        <span className="pricing-term"> hours*</span>
+                    </span>
+          </div>
+        )
+    } else if(this.props.movingSize === "Room or less (partial move)"){
+      return(
+        <div>
+        <label className="description crew"><b>2</b>  Movers Crew</label>
+                   <span className="pricing-rate">
+                       <span className="pricing-currency highlight animate-hover">$</span>
+                       <span className="pricing-amount highlight animate-hover">80</span>
+                       <span className="pricing-term">/ hour</span>
+                   </span>
+                   <label className="description">Estimated job time</label>
+                    <span className="estimated-time">
+                        <span className="estimated-amount orange-text">2 - 4</span>
+                        <span className="pricing-term"> hours*</span>
+                    </span>
+        </div>
+      )
+  }
+  else if(this.props.movingSize === "1 Bedroom apartment"){
+    return(
+      <div>
+      <label className="description crew"><b>2</b>  Movers Crew</label>
+                   <span className="pricing-rate">
+                       <span className="pricing-currency highlight animate-hover">$</span>
+                       <span className="pricing-amount highlight animate-hover">80</span>
+                       <span className="pricing-term">/ hour</span>
+                   </span>
+                   <label className="description">Estimated job time</label>
+                    <span className="estimated-time">
+                        <span className="estimated-amount orange-text">3 - 5</span>
+                        <span className="pricing-term"> hours*</span>
+                    </span>
+      </div>
+    )
+}
+else if(this.props.movingSize === "2 Bedroom apartment" || this.props.movingSize === "2 Bedroom House/Townhouse" ){
+  return(
+    <div>
+    <label className="description crew"><b>3</b>  Movers Crew</label>
+                   <span className="pricing-rate">
+                       <span className="pricing-currency highlight animate-hover">$</span>
+                       <span className="pricing-amount highlight animate-hover">120</span>
+                       <span className="pricing-term">/ hour</span>
+                   </span>
+                   <label className="description">Estimated job time</label>
+                    <span className="estimated-time">
+                        <span className="estimated-amount orange-text">4 - 6</span>
+                        <span className="pricing-term"> hours*</span>
+                    </span>
+    </div>
+  )
+}
+else if(this.props.movingSize === "3+ Bedroom apartment" || this.props.movingSize === "3 Bedroom House/Townhouse" || this.props.movingSize === "4+ Bedroom House/Townhouse" || this.props.movingSize === "Office / Commercial space"){
+  return(
+    <div>
+    <label className="description crew"><b>4</b>  Movers Crew</label>
+                   <span className="pricing-rate">
+                       <span className="pricing-currency highlight animate-hover">$</span>
+                       <span className="pricing-amount highlight animate-hover">160</span>
+                       <span className="pricing-term">/ hour</span>
+                   </span>
+                   <label className="description">Estimated job time</label>
+                    <span className="estimated-time">
+                        <span className="estimated-amount orange-text">6 - 8</span>
+                        <span className="pricing-term"> hours*</span>
+                    </span>
+    </div>
+  )
+}
+  }
 
   render() {
     let origin_name = this.state.submittedOrigin
@@ -147,11 +235,12 @@ class CalculatorResult extends Component {
     let distance_mile = this.state.distanceText
     return (
       <div>
-          <div>Moving Sumary
-          <div>From: {origin_name}<br></br>
-                      TO: {destination_name}</div>
-                      </div>
+          <h2>Moving calculator result.</h2>
+          <div>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</div>
+          <div>{origin_name}<i className="fas fa-arrow-right" style={{margin: "0 30px"}}></i>{destination_name}</div>
+
           <div id="output">{this.props.submitted && this.findDsitance()}</div>
+          <div>{this.props.submitted && this.handleResult()}</div>
           <div>{this.props.submitted && this.renderMap()}</div>
 
       </div>
