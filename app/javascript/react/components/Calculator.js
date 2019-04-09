@@ -33,13 +33,13 @@ const movingSizeOptions = [
 ]
 const style = {
   h1: {
-    fontSize: '51px',
+    fontSize: '33px',
     color: 'white',
     fontWeight: 'lighter'
   },
   h2: {
     color: 'white',
-    fontSize: '22px',
+    fontSize: '14.5px',
     fontWeight: 'lighter'
   },
 }
@@ -76,6 +76,7 @@ class Calculator extends Component {
 }
 
   handleSubmit(event) {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -90,15 +91,15 @@ class Calculator extends Component {
     if(this.state.submitted){
 
       return(
-        <div>
-          {this.state.submitted && <CalculatorResult
+        <div className='form-container animated fadeInDown delay-1.0s'>
+          <CalculatorResult
                   origin={this.state.origin}
                   destination={this.state.destination}
                   submitted={this.state.submitted}
                   movingSize={this.state.movingSize}
                   typeFrom={this.state.typeFrom}
                   typeTo={this.state.typeTo}
-                  />}
+                  />
         </div>
       )
     } else {
@@ -111,7 +112,7 @@ class Calculator extends Component {
           <Form
             noValidate
             validated={this.state.validated}
-            onSubmit={e => this.handleSubmit(e)}
+            onSubmit={this.handleSubmit}
           >
             <Form.Row >
               <Form.Group as={Col} md="4" >
@@ -123,8 +124,8 @@ class Calculator extends Component {
                 selected={this.state.startDate}
                 onChange={this.handleDate}
                 maxDate={addMonths(new Date(), 4)}
-                highlightDates={[subDays(new Date(), 7), addDays(new Date(), 7)]}
                 showDisabledMonthNavigation
+                className='form-control'
                 >
                 <div style={{color: 'red'}}>
                   Don't forget to check the weather!

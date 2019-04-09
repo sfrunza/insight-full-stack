@@ -19,9 +19,9 @@ body #app .ui.segment .fields .zip-field{
      width: 33.33%;
 }
 
- body #app .calc-form {
-    max-width: 495px !important;
-}
+ /* body #app .calc-form {
+    width: 350px !important;
+} */
 body #app .ui.dropdown .menu>.item{
   padding: 0.4rem 1rem !important;
 }
@@ -46,5 +46,46 @@ body #app.ui.form .field .ui.input input, .ui.form .fields .field .ui.input inpu
 .form-group.col-md-4 input {
   border-radius: 4px !important;
   margin-bottom: 0 !important;
+}
 
+.ui.centered.grid>.column:not(.aligned):not(.justified):not(.row), .ui.centered.grid>.row>.column:not(.aligned):not(.justified), .ui.grid .centered.row>.column:not(.aligned):not(.justified) {
+  text-align: center !important;
+}
+body #app .result-info{
+  color: white;
+  padding: 0 ;
+}
+body #app .colum2 {
+  bottom: 25px !important;
+}
+
+.react-datepicker-wrapper {
+    display: unset;
+}
+.react-datepicker__input-container {
+    position: relative;
+    display: unset;
+}
+
+.arrow-icon{
+  width: 10% !important;
+  padding: 16px 0px !important;
+  margin-top: 2%;
+}
+.job-info {
+  width: 40% !important;
+}
+.job-info-buttons {
+  width: 40% !important;
+  margin-top: 3%;
+}
+.job-info-buttons button {
+  width: 100% !important;
+}
+.city-info {
+  width: 45% !important;
+}
+#app .job-info label {
+  color: white !important;
+  font-size: 2rem !important;
 }
