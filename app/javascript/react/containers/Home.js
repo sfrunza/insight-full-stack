@@ -33,7 +33,7 @@ import HomepageHeading from '../components/HomepageHeading'
      return (
        <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth} >
        <InlineStyle />
-             <HomepageHeading class="home-top"/>
+             <HomepageHeading class="home-top" headerTitle="Prices & Rates" headerDescription="We Offer Fair and Affordable Prices"/>
            <Container className="our-process">
              <Grid className="grid-our-process">
                <Grid.Column width={4} className="process-list"><i className="far fa-calendar-check"></i><span> </span>Book our service</Grid.Column>

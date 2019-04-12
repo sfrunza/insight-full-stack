@@ -1,41 +1,11 @@
-body #app .ui.segment {
-     position: relative;
-     background: none;
-     -webkit-box-shadow: none;
-     box-shadow: none;
-      margin: 0rem 0;
-      padding: 0em 0em;
-      border-radius: none;
-      border: none;
-}
-body #app .ui.segment .fields .field{
-     width: 100%;
-     border-radius: none;
-}
-body #app .ui.segment .fields .field{
-     width: 100%;
-}
-body #app .ui.segment .fields .zip-field{
-     width: 33.33%;
-}
-
- /* body #app .calc-form {
-    width: 350px !important;
-} */
-body #app .ui.dropdown .menu>.item{
-  padding: 0.4rem 1rem !important;
-}
 
 body #app .calc-header {
   margin-top: 0 !important;
   margin-bottom: 0
 }
+
 body #app .calc-description {
   margin-top: 0 !important;
-}
-
-body #app.ui.form .field .ui.input input, .ui.form .fields .field .ui.input input {
-    width: 100%;
 }
 
 .btn-primary {
@@ -48,44 +18,35 @@ body #app.ui.form .field .ui.input input, .ui.form .fields .field .ui.input inpu
   margin-bottom: 0 !important;
 }
 
-.ui.centered.grid>.column:not(.aligned):not(.justified):not(.row), .ui.centered.grid>.row>.column:not(.aligned):not(.justified), .ui.grid .centered.row>.column:not(.aligned):not(.justified) {
-  text-align: center !important;
-}
-body #app .result-info{
-  color: white;
-  padding: 0 ;
-}
-body #app .colum2 {
-  bottom: 25px !important;
-}
-
 .react-datepicker-wrapper {
     display: unset;
 }
+
 .react-datepicker__input-container {
     position: relative;
     display: unset;
 }
 
-.arrow-icon{
-  width: 10% !important;
-  padding: 16px 0px !important;
-  margin-top: 2%;
-}
-.job-info {
-  width: 40% !important;
-}
 .job-info-buttons {
-  width: 40% !important;
-  margin-top: 3%;
+  margin-top: 3% !important;
 }
-.job-info-buttons button {
+
+.job-info-buttons .btn {
   width: 100% !important;
 }
-.city-info {
-  width: 45% !important;
-}
+
 #app .job-info label {
   color: white !important;
   font-size: 2rem !important;
+}
+
+.pushable div.ui.container.calc-form {
+  width: 90% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 35px;
+}
+
+::placeholder {
+  color: #495057 !important;
 }
