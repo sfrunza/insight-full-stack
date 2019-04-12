@@ -153,16 +153,22 @@ class CalculatorResult extends Component {
 
         <Container className='job-info'>
           <Row>
-            <Col xs={6}><label>2</label> Movers Crew</Col>
-            <Col xs={6}><label>$ 80</label> / hour </Col>
+            <Col></Col>
+            <Col><label>2</label> Movers Crew</Col>
+            <Col><label>$ 80</label> / hour </Col>
+            <Col></Col>
           </Row>
           <Row>
-            <Col xs={6} style={{marginTop: '3%'}}>Estimated job time</Col>
-            <Col xs={6}><label>2 - 4</label> hours</Col>
+          <Col></Col>
+            <Col style={{marginTop: '17px'}}>Estimated job time</Col>
+            <Col><label>2 - 4</label> hours</Col>
+            <Col></Col>
           </Row>
           <Row>
-            <Col xs={6}>Travel time</Col>
-            <Col xs={6} id="travelTime">{this.findTravelTime()}</Col>
+          <Col></Col>
+            <Col>Travel time</Col>
+            <Col id="travelTime">{this.findTravelTime()}</Col>
+            <Col></Col>
           </Row>
         </Container>
 
@@ -174,24 +180,34 @@ class CalculatorResult extends Component {
     let destination_spot = this.state.destination
     let distance_mile = this.state.distanceText
     return (
-      <div>
-          <h2>Moving calculator result.</h2>
-          <div>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</div>
-          <Container className='city-info'>
-            <Row>
-              <Col xs={6} id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}<i className="fas fa-arrow-right"></i></Col>
-              <Col xs={6} id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
-            </Row>
-          </Container>
-          <div>{this.handleResult()}</div>
-          <Container className='job-info-buttons'>
-            <Row>
-              <Col xs={6}><Button variant="outline-warning">Back to Calculator</Button></Col>
-              <Col xs={6}><Button variant="success">Request Moving Now</Button></Col>
-            </Row>
-          </Container>
-            {/*<div>{this.props.submitted && this.renderMap()}</div> */}
-      </div>
+      <Container>
+        <Row>
+          <Col></Col>
+          <Col xs={6}><h2>Moving calculator result.</h2></Col>
+          <Col></Col>
+        </Row>
+
+        <Row>
+          <Col></Col>
+          <Col xs={8}>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</Col>
+          <Col></Col>
+        </Row>
+        <Row className='city-info'>
+          <Col></Col>
+          <Col id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}<i className="fas fa-arrow-right"></i></Col>
+          <Col id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
+          <Col></Col>
+        </Row>
+        <div>{this.handleResult()}</div>
+
+        <Row className='job-info-buttons'>
+          <Col></Col>
+          <Col><Button variant="outline-warning" href="/">Back to Calculator</Button></Col>
+          <Col><Button variant="success" href="/">Request Moving Now</Button></Col>
+          <Col></Col>
+        </Row>
+          {/*<div>{this.props.submitted && this.renderMap()}</div> */}
+      </Container>
     )
   }
 }

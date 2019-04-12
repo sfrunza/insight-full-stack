@@ -11,6 +11,7 @@ import {
 import 'semantic-ui-css/semantic.min.css'
 import NavigationBar from './NavigationBar'
 import Calculator from './Calculator'
+import { Row, Col } from 'react-bootstrap'
 
 
 
@@ -56,7 +57,9 @@ const HomepageHeading =  props => {
       <Visibility once={false}>
         <Segment inverted textAlign='center' style={{ padding: '1em 0em' }} vertical className={props.class}>
           <NavigationBar />
-          <Calculator />
+          <Container className='job-info'>
+            <Calculator />
+          </Container>
         </Segment>
       </Visibility>
     )
