@@ -50,3 +50,7 @@ body #app .calc-description {
 ::placeholder {
   color: #495057 !important;
 }
+body #app div .container div .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
