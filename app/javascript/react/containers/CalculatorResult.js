@@ -25,6 +25,7 @@ class CalculatorResult extends Component {
         this.handleResult = this.handleResult.bind(this)
         this.findTravelTime = this.findTravelTime.bind(this)
         this.getAddress = this.getAddress.bind(this)
+        this.returnFunction = this.returnFunction.bind(this)
 
 
   }
@@ -145,25 +146,609 @@ class CalculatorResult extends Component {
         )
     }
 
-    handleResult(){
-      let movingSize = this.props.movingSize
-      let typeFrom = this.props.typeFrom
-      let typeTo = this.props.typeTo
-      return(
+    handleResult(moveFrom, moveTo, sizeMove){
+      let sizeArray = this.props.arraySize
+      let typeArray = this.props.arrayType
 
+      let arr = [];
+      sizeArray.map(item => {
+            if(item.value.length !=0 || item.value != ''){
+              arr.push(item.value)
+            }
+
+      })
+      let arr2 = []
+      typeArray.map(item => {
+        if(item.value.length !=0 || item.value != ''){
+          arr2.push(item.value)
+        }
+      })
+
+      let arr4 = new Array();
+          arr4['elevator building'] = new Array()
+          arr4['1st/Ground floor'] = new Array()
+          arr4['2nd floor'] = new Array()
+          arr4['3rd floor'] = new Array()
+          arr4['4th floor'] = new Array()
+          arr4['private house'] = new Array()
+          arr4['storage unit'] = new Array()
+
+          arr4['elevator building']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['elevator building']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['1st/Ground floor']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['1st/Ground floor']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['2nd floor']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['2nd floor']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['3rd floor']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['3rd floor']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['4th floor']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['4th floor']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['private house']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['private house']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+          arr4['storage unit']['elevator building'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['1st/Ground floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['2nd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['3rd floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['4th floor'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['private house'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+          arr4['storage unit']['storage unit'] = new Array('Room or less (partial move)', 'Studio apartment', '1 Bedroom apartment', '2 Bedroom apartment', '3+ Bedroom apartment', '2 Bedroom House/Townhouse', '3 Bedroom House/Townhouse', '4+ Bedroom House/Townhouse', 'Office / Commercial space')
+
+
+         arr4['elevator building']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['elevator building']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['elevator building']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['elevator building']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['elevator building']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['elevator building']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['elevator building']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['elevator building']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['elevator building']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['elevator building']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['elevator building']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['storage unit']['1 Bedroom apartment'] = this.returnFunction('3', 80, '3 - 5')
+
+         arr4['elevator building']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['elevator building']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['elevator building']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['elevator building']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['elevator building']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 80, '4 - 6')
+
+         arr4['elevator building']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['elevator building']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['elevator building']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 80, '5 - 7')
+
+         arr4['elevator building']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['elevator building']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['elevator building']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['elevator building']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['elevator building']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['elevator building']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['elevator building']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['elevator building']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['elevator building']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['elevator building']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['elevator building']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['elevator building']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['elevator building']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['elevator building']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['elevator building']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['elevator building']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['elevator building']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['elevator building']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['elevator building']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['elevator building']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['elevator building']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['elevator building']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['elevator building']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['elevator building']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['1st/Ground floor']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['1st/Ground floor']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['1st/Ground floor']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['1st/Ground floor']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['1st/Ground floor']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['1st/Ground floor']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['1st/Ground floor']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['1st/Ground floor']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['1st/Ground floor']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['1st/Ground floor']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['1st/Ground floor']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['storage unit']['1 Bedroom apartment'] = this.returnFunction('2', 80, '3 - 5')
+
+         arr4['1st/Ground floor']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['1st/Ground floor']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['1st/Ground floor']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['1st/Ground floor']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['1st/Ground floor']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['1st/Ground floor']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['1st/Ground floor']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['1st/Ground floor']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['1st/Ground floor']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['1st/Ground floor']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['1st/Ground floor']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['1st/Ground floor']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['1st/Ground floor']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['1st/Ground floor']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['1st/Ground floor']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['1st/Ground floor']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['1st/Ground floor']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['1st/Ground floor']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['1st/Ground floor']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['1st/Ground floor']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['1st/Ground floor']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['1st/Ground floor']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['1st/Ground floor']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['1st/Ground floor']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['1st/Ground floor']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['1st/Ground floor']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['1st/Ground floor']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['1st/Ground floor']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['1st/Ground floor']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['1st/Ground floor']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['1st/Ground floor']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['1st/Ground floor']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['1st/Ground floor']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['1st/Ground floor']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['2nd floor']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['2nd floor']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['2nd floor']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['2nd floor']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['2nd floor']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['2nd floor']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['2nd floor']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['2nd floor']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['2nd floor']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['2nd floor']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['2nd floor']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['storage unit']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+
+         arr4['2nd floor']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['2nd floor']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['2nd floor']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['2nd floor']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['2nd floor']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['2nd floor']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['2nd floor']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['2nd floor']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['2nd floor']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+
+         arr4['2nd floor']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['2nd floor']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['2nd floor']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['2nd floor']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['2nd floor']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['2nd floor']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['2nd floor']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['2nd floor']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['2nd floor']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['2nd floor']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['2nd floor']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['2nd floor']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['2nd floor']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['2nd floor']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['2nd floor']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['2nd floor']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['2nd floor']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['2nd floor']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['2nd floor']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['2nd floor']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['2nd floor']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['2nd floor']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['2nd floor']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['2nd floor']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['3rd floor']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['3rd floor']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['3rd floor']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['3rd floor']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['3rd floor']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['3rd floor']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['3rd floor']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['3rd floor']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['3rd floor']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['3rd floor']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['3rd floor']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['storage unit']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['3rd floor']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['3rd floor']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['3rd floor']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['3rd floor']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['3rd floor']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['3rd floor']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['3rd floor']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['3rd floor']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['3rd floor']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+
+         arr4['3rd floor']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['3rd floor']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['3rd floor']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['3rd floor']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['3rd floor']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['3rd floor']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['3rd floor']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['3rd floor']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['3rd floor']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['3rd floor']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['3rd floor']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['3rd floor']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['3rd floor']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['3rd floor']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['3rd floor']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['3rd floor']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['3rd floor']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['3rd floor']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['3rd floor']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['3rd floor']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['3rd floor']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['3rd floor']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['3rd floor']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['3rd floor']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['4th floor']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['4th floor']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['4th floor']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['4th floor']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['4th floor']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['4th floor']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['4th floor']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['4th floor']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['4th floor']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['4th floor']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['4th floor']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['storage unit']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['4th floor']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['4th floor']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['4th floor']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['4th floor']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['4th floor']['storage unit']['2 Bedroom apartment'] = this.returnFunction('4', 160, '4 - 6')
+
+         arr4['4th floor']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['4th floor']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['4th floor']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['4th floor']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+
+         arr4['4th floor']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['4th floor']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['4th floor']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['4th floor']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['4th floor']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['4th floor']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['4th floor']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['4th floor']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['4th floor']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['4th floor']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['4th floor']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['4th floor']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['4th floor']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['4th floor']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['4th floor']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['4th floor']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['4th floor']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['4th floor']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['4th floor']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['4th floor']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['4th floor']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['4th floor']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['4th floor']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['4th floor']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['private house']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['private house']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['private house']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['private house']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['private house']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['private house']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['private house']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['private house']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['private house']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['private house']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['private house']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['storage unit']['1 Bedroom apartment'] = this.returnFunction('2', 80, '3 - 5')
+
+         arr4['private house']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['private house']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['private house']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['private house']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['private house']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+
+         arr4['private house']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['private house']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['private house']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['private house']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+
+         arr4['private house']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['private house']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['private house']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['private house']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['private house']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['private house']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['private house']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['private house']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['private house']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['private house']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['private house']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['private house']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['private house']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['private house']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['private house']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['private house']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['private house']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['private house']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['private house']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['private house']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['private house']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['private house']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['private house']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['private house']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+
+
+         arr4['storage unit']['elevator building']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['1st/Ground floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['2nd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['3rd floor']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['4th floor']['Room or less (partial move)'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['private house']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['storage unit']['Room or less (partial move)'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['storage unit']['elevator building']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['1st/Ground floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['storage unit']['2nd floor']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['storage unit']['3rd floor']['Studio apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['4th floor']['Studio apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['storage unit']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
+         arr4['storage unit']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
+
+         arr4['storage unit']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
+         arr4['storage unit']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['storage unit']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['storage unit']['4th floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '6 - 8')
+         arr4['storage unit']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['storage unit']['1 Bedroom apartment'] = this.returnFunction('2', 80, '3 - 5')
+
+         arr4['storage unit']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['storage unit']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
+         arr4['storage unit']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['storage unit']['4th floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['private house']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
+         arr4['storage unit']['storage unit']['2 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
+
+         arr4['storage unit']['elevator building']['3+ Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['storage unit']['1st/Ground floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['2nd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['3rd floor']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['storage unit']['4th floor']['3+ Bedroom apartment'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['storage unit']['private house']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['storage unit']['3+ Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
+
+         arr4['storage unit']['elevator building']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['storage unit']['1st/Ground floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['storage unit']['2nd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['3rd floor']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['storage unit']['4th floor']['2 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['storage unit']['private house']['2 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['storage unit']['storage unit']['2 Bedroom House/Townhouse'] = this.returnFunction('3', 120, '5 - 7')
+
+         arr4['storage unit']['elevator building']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '8 - 10')
+         arr4['storage unit']['1st/Ground floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['storage unit']['2nd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '7 - 9')
+         arr4['storage unit']['3rd floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['storage unit']['4th floor']['3 Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['storage unit']['private house']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+         arr4['storage unit']['storage unit']['3 Bedroom House/Townhouse'] = this.returnFunction('4', 160, '6 - 8')
+
+         arr4['storage unit']['elevator building']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['storage unit']['1st/Ground floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['storage unit']['2nd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '7 - 9')
+         arr4['storage unit']['3rd floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '9 - 11')
+         arr4['storage unit']['4th floor']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '10 - 12')
+         arr4['storage unit']['private house']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+         arr4['storage unit']['storage unit']['4+ Bedroom House/Townhouse'] = this.returnFunction('5', 200, '8 - 10')
+
+         arr4['storage unit']['elevator building']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['1st/Ground floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['2nd floor']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['3rd floor']['Office / Commercial space'] = this.returnFunction('4', 160, '4 - 6')
+         arr4['storage unit']['4th floor']['Office / Commercial space'] = this.returnFunction('4', 160, '5 - 7')
+         arr4['storage unit']['private house']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+         arr4['storage unit']['storage unit']['Office / Commercial space'] = this.returnFunction('3', 120, '3 - 5')
+
+      return(
         <Container className='job-info'>
-          <Row>
-            <Col></Col>
-            <Col><label>2</label> Movers Crew</Col>
-            <Col><label>$ 80</label> / hour </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-          <Col></Col>
-            <Col style={{marginTop: '17px'}}>Estimated job time</Col>
-            <Col><label>2 - 4</label> hours</Col>
-            <Col></Col>
-          </Row>
+          {arr4[moveFrom][moveTo][sizeMove]}
           <Row>
           <Col></Col>
             <Col>Travel time</Col>
@@ -171,16 +756,31 @@ class CalculatorResult extends Component {
             <Col></Col>
           </Row>
         </Container>
-
       )
   }
 
-  render() {
-    let origin_spot = this.state.origin;
-    let destination_spot = this.state.destination
-    let distance_mile = this.state.distanceText
-    return (
+  returnFunction(movers, rate, time){
+    return(
       <Container>
+        <Row>
+          <Col></Col>
+          <Col><label>{movers}</label> Movers Crew</Col>
+          <Col><label>$ {rate}</label> / hour </Col>
+          <Col></Col>
+        </Row>
+        <Row>
+        <Col></Col>
+          <Col style={{marginTop: '17px'}}>Estimated job time</Col>
+          <Col><label>{time}</label> hours</Col>
+          <Col></Col>
+        </Row>
+      </Container>
+    )
+  }
+
+  render() {
+    return (
+      <Container className='form-container animated fadeInDown delay-1.0s'>
         <Row>
           <Col></Col>
           <Col xs={6}><h2>Moving calculator result.</h2></Col>
@@ -198,7 +798,7 @@ class CalculatorResult extends Component {
           <Col id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
           <Col></Col>
         </Row>
-        <div>{this.handleResult()}</div>
+        <div>{this.handleResult(this.props.typeFrom, this.props.typeTo, this.props.movingSize)}</div>
 
         <Row className='job-info-buttons'>
           <Col></Col>

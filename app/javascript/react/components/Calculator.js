@@ -139,6 +139,8 @@ class Calculator extends Component {
                   movingSize={this.state.movingSize}
                   typeFrom={this.state.typeFrom}
                   typeTo={this.state.typeTo}
+                  arraySize={movingSizeOptions}
+                  arrayType={movingTypeOptions}
                   />
         </div>
       )
@@ -147,7 +149,7 @@ class Calculator extends Component {
         <div className='form-container animated fadeInDown delay-0.8s'>
           <Header className="calc-header" as='h1' content='Get Your Quote Now' style={style.h1} textAlign='center' />
           <Header className="calc-description" as='h2' content='Local and Long Distance Moving Cost Calculator' style={style.h2} textAlign='center' />
-          <Container className="calc-form" style={{width: '400px'}}>
+          <Container className="calc-form" style={{width: '400px',display: 'flex'}}>
             <Form
               noValidate
               validated={this.state.validated}
