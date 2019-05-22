@@ -246,7 +246,7 @@ class CalculatorResult extends Component {
          arr4['elevator building']['private house']['Studio apartment'] = this.returnFunction('2', 80, '3 - 5')
          arr4['elevator building']['storage unit']['Studio apartment'] = this.returnFunction('2', 80, '2 - 4')
 
-         arr4['elevator building']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['elevator building']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
          arr4['elevator building']['1st/Ground floor']['1 Bedroom apartment'] = this.returnFunction('2', 80, '4 - 6')
          arr4['elevator building']['2nd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '4 - 6')
          arr4['elevator building']['3rd floor']['1 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
@@ -254,7 +254,7 @@ class CalculatorResult extends Component {
          arr4['elevator building']['private house']['1 Bedroom apartment'] = this.returnFunction('3', 120, '3 - 5')
          arr4['elevator building']['storage unit']['1 Bedroom apartment'] = this.returnFunction('3', 80, '3 - 5')
 
-         arr4['elevator building']['elevator building']['2 Bedroom apartment'] = this.returnFunction('2', 80, '2 - 4')
+         arr4['elevator building']['elevator building']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
          arr4['elevator building']['1st/Ground floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
          arr4['elevator building']['2nd floor']['2 Bedroom apartment'] = this.returnFunction('3', 120, '5 - 7')
          arr4['elevator building']['3rd floor']['2 Bedroom apartment'] = this.returnFunction('4', 160, '5 - 7')
