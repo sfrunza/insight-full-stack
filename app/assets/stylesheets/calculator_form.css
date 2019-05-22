@@ -1,7 +1,17 @@
 
 body #app .calc-header {
   margin-top: 0 !important;
-  margin-bottom: 0
+  margin-bottom: 0;
+  font-size: calc(30px + (22 - 14) * ((100vw - 300px) / (1700 - 600)));
+  color: white;
+  font-weight: lighter;
+}
+body #app .calc-description {
+  margin-top: 0 !important;
+  margin-bottom: 0;
+  font-size: calc(13px + (17 - 13) * ((100vw - 300px) / (1600 - 300)));
+  color: white;
+  font-weight: lighter;
 }
 
 body #app .calc-description {
@@ -13,10 +23,6 @@ body #app .calc-description {
     width: 100%;
 }
 
-.form-group.col-md-4 input {
-  border-radius: 4px !important;
-  margin-bottom: 0 !important;
-}
 
 .react-datepicker-wrapper {
     display: unset;
@@ -50,7 +56,27 @@ body #app .calc-description {
 ::placeholder {
   color: #495057 !important;
 }
-body #app div .container div .row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+html body #app div div div div.calc-form div.row {
+
+  margin-bottom: 5px;
+  width: auto !important;
+}
+html body #app div div div div div div div form div.row div.col{
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 3px;
+
+}
+input {
+  margin: 0 !important;
+  border-radius: 0.25rem !important;
+}
+
+@media only screen and (max-width: 767px){
+.ui.container {
+    width: auto!important;
+    margin-left: 5px!important;
+    margin-right: 5px!important;
+}
+
 }

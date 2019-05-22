@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {  Container, Header } from 'semantic-ui-react'
-import { Form, Col, Button } from 'react-bootstrap'
+import { Container, Header } from 'semantic-ui-react'
+import { Form, Col, Button, Row } from 'react-bootstrap'
 import CalculatorResult from '../containers/CalculatorResult'
 import DatePicker from 'react-datepicker';
 import addMonths from "date-fns/addMonths";
@@ -31,18 +31,7 @@ const movingSizeOptions = [
   { key: 'fourhouse', text: '4+ Bedroom House/Townhouse', value: '4+ Bedroom House/Townhouse' },
   { key: 'commercial', text: 'Office / Commercial Moving', value: 'Office / Commercial space' },
 ]
-const style = {
-  h1: {
-    fontSize: '40px',
-    color: 'white',
-    fontWeight: 'lighter'
-  },
-  h2: {
-    color: 'white',
-    fontSize: '17.5px',
-    fontWeight: 'lighter'
-  },
-}
+
 
 class Calculator extends Component {
   constructor(props) {
@@ -147,16 +136,21 @@ class Calculator extends Component {
     } else {
       return (
         <div className='form-container animated fadeInDown delay-0.8s'>
-          <Header className="calc-header" as='h1' content='Get Your Quote Now' style={style.h1} textAlign='center' />
-          <Header className="calc-description" as='h2' content='Local and Long Distance Moving Cost Calculator' style={style.h2} textAlign='center' />
-          <Container className="calc-form" style={{width: '400px',display: 'flex'}}>
+
+          <Container className="calc-form" style={{width: '400px'}}>
+          <Row>
+            <Col><Header className="calc-header" as='h1' content='Get Your Quote Now' textAlign='center' /></Col>
+          </Row>
+          <Row>
+            <Col><Header className="calc-description" as='h2' content='Local and Long Distance Moving Cost Calculator' textAlign='center' /></Col>
+          </Row>
             <Form
               noValidate
               validated={this.state.validated}
               onSubmit={this.handleSubmit}
             >
-              <Form.Row >
-                <Form.Group as={Col} md="4" >
+            <Row>
+                <Col>
                   <DatePicker
                     required
                     name="startDate"
@@ -168,12 +162,12 @@ class Calculator extends Component {
                     showDisabledMonthNavigation
                     className='form-control'
                     >
-                  <div style={{color: 'red'}}>
-                    Don't forget to check the weather!
-                  </div>
-                </DatePicker>
-                  </Form.Group>
-                <Form.Group as={Col} md="4" >
+                    <div style={{color: 'red'}}>
+                      Don't forget to check the weather!
+                    </div>
+                  </DatePicker>
+                </Col>
+                <Col>
                   <Form.Control
                     required
                     placeholder='From Zip'
@@ -182,21 +176,20 @@ class Calculator extends Component {
                     value={this.state.origin}
                     onChange={this.handleChange}
                   />
-                  </Form.Group>
-                <Form.Group as={Col} md="4" >
-                <Form.Control
-                  required
-                  placeholder='To Zip'
-                  name='destination'
-                  type='number'
-                  value={this.state.destination}
-                  onChange={this.handleChange}
-                />
-                </Form.Group>
-              </Form.Row>
-
-              <Form.Row>
-                <Form.Group as={Col} md="6" >
+                </Col>
+                <Col>
+                  <Form.Control
+                    required
+                    placeholder='To Zip'
+                    name='destination'
+                    type='number'
+                    value={this.state.destination}
+                    onChange={this.handleChange}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col>
                   <Form.Control
                     name='typeFrom'
                     onChange={this.handleChange}
@@ -204,10 +197,9 @@ class Calculator extends Component {
                     required
                   >
                   { this.movingTypeOptionsSelect(chooseFrom) }
-
                   </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} md="6" >
+                </Col>
+                <Col>
                   <Form.Control
                     name='typeTo'
                     onChange={this.handleChange}
@@ -215,12 +207,11 @@ class Calculator extends Component {
                     required
                   >
                   {this.movingTypeOptionsSelect(chooseTo)}
-
                   </Form.Control>
-                </Form.Group>
-              </Form.Row>
-
-                <Form.Group controlId="formGridAddress1">
+                </Col>
+              </Row>
+              <Row>
+                <Col>
                   <Form.Control
                     name='movingSize'
                     onChange={this.handleChange}
@@ -228,12 +219,15 @@ class Calculator extends Component {
                     required
                   >
                   {this.movingSizeOptionsSelect()}
-
                   </Form.Control>
-                </Form.Group>
-              <Button variant="primary" type="submit">Calculate</Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col><Button variant="primary" type="submit">Calculate</Button></Col>
+              </Row>
             </Form>
           </Container>
+
         </div>
 
 
