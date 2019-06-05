@@ -749,11 +749,11 @@ class CalculatorResult extends Component {
       return(
         <Container className='job-info'>
           {arr4[moveFrom][moveTo][sizeMove]}
-          <Row>
-          <Col></Col>
+          <Row className='result-row'>
+
             <Col>Travel time</Col>
             <Col id="travelTime">{this.findTravelTime()}</Col>
-            <Col></Col>
+
           </Row>
         </Container>
       )
@@ -762,17 +762,13 @@ class CalculatorResult extends Component {
   returnFunction(movers, rate, time){
     return(
       <Container>
-        <Row>
-          <Col></Col>
+        <Row className='result-row'>
           <Col><label>{movers}</label> Movers Crew</Col>
           <Col><label>$ {rate}</label> / hour </Col>
-          <Col></Col>
         </Row>
-        <Row>
-        <Col></Col>
+        <Row className='result-row'>
           <Col style={{marginTop: '17px'}}>Estimated job time</Col>
           <Col><label>{time}</label> hours</Col>
-          <Col></Col>
         </Row>
       </Container>
     )
@@ -781,30 +777,24 @@ class CalculatorResult extends Component {
   render() {
     return (
       <Container className='form-container animated fadeInDown delay-1.0s'>
-        <Row>
-          <Col></Col>
-          <Col xs={6}><h2>Moving calculator result.</h2></Col>
-          <Col></Col>
+        <Row className='result-row'>
+          <Col><h2 className='result-header'>Moving calculator result.</h2></Col>
         </Row>
 
-        <Row>
-          <Col></Col>
-          <Col xs={8}>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</Col>
-          <Col></Col>
+        <Row className='result-row'>
+          <Col className='result-description'>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</Col>
         </Row>
+
         <Row className='city-info'>
-          <Col></Col>
           <Col id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}<i className="fas fa-arrow-right"></i></Col>
           <Col id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
-          <Col></Col>
         </Row>
-        <div>{this.handleResult(this.props.typeFrom, this.props.typeTo, this.props.movingSize)}</div>
+
+        {this.handleResult(this.props.typeFrom, this.props.typeTo, this.props.movingSize)}
 
         <Row className='job-info-buttons'>
-          <Col></Col>
           <Col><Button variant="outline-warning" href="/">Back to Calculator</Button></Col>
           <Col><Button variant="success" href="/">Request Moving Now</Button></Col>
-          <Col></Col>
         </Row>
           {/*<div>{this.props.submitted && this.renderMap()}</div> */}
       </Container>
