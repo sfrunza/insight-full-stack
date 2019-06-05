@@ -30,6 +30,8 @@ body #app .calc-description {
 
 .job-info-buttons {
   margin-top: 3% !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .job-info-buttons .btn {
@@ -83,9 +85,23 @@ input {
   .result-description{
     font-size: 14px;
   }
-  
 }
 
+@media (min-width: 768px){
+  .job-info {
+      max-width: 720px !important;
+  }
+  .container {
+    max-width: 720px !important;
+
+  }
+}
+
+.result-row{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
 .job-info{
-  width: 40rem !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
