@@ -785,7 +785,7 @@ class CalculatorResult extends Component {
           <Col className='result-description'>Moving a {this.props.movingSize} from {this.props.typeFrom} to {this.props.typeTo},<div id="output">{this.props.submitted && this.findDsitance()},</div> should take approximately:</Col>
         </Row>
 
-        <Row className='city-info'>
+        <Row className='result-row'>
           <Col id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}<i className="fas fa-arrow-right"></i></Col>
           <Col id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
         </Row>
