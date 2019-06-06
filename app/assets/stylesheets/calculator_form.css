@@ -29,7 +29,7 @@ body #app .calc-description {
 }
 
 .job-info-buttons {
-  margin-top: 3% !important;
+  margin-top: 5% !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
@@ -93,7 +93,8 @@ input {
   }
   .container {
     max-width: 720px !important;
-
+    padding-right: 0px !important;
+    padding-left: 0px !important;
   }
 }
 
@@ -102,6 +103,10 @@ input {
   margin-right: 0px !important;
 }
 .job-info{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+div.rate-result.container {
   padding-right: 0px !important;
   padding-left: 0px !important;
 }
