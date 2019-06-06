@@ -63,7 +63,6 @@ class Calculator extends Component {
     this.setState({
       startDate: date
     });
-    console.log(date);
   }
 
   handleSubmit(event) {
