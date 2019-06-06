@@ -156,7 +156,6 @@ class Calculator extends Component {
                     minDate={new Date()}
                     placeholderText="Move Date"
                     selected={this.state.startDate}
-                    dateFormat="yyyy-MM-dd"
                     onChange={this.handleDate}
                     maxDate={addMonths(new Date(), 4)}
                     showDisabledMonthNavigation
