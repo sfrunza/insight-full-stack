@@ -761,7 +761,7 @@ class CalculatorResult extends Component {
 
   returnFunction(movers, rate, time){
     return(
-      <Container>
+      <Container className="rate-result">
         <Row className='result-row'>
           <Col><label>{movers}</label> Movers Crew</Col>
           <Col><label>$ {rate}</label> / hour </Col>
