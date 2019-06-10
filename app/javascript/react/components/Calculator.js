@@ -152,7 +152,6 @@ class Calculator extends Component {
                 <Col>
                   <DatePicker
                     required
-                    name="startDate"
                     minDate={new Date()}
                     placeholderText="Move Date"
                     selected={this.state.startDate}

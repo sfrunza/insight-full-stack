@@ -786,7 +786,8 @@ class CalculatorResult extends Component {
         </Row>
 
         <Row className='result-row'>
-          <Col id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}<i className="fas fa-arrow-right"></i></Col>
+          <Col id='city-origin-name'>{this.getAddress(this.state.origin, 'city-origin-name')}</Col>
+          <Col id='result-arrow'><i className="fas fa-long-arrow-alt-right"></i></Col>
           <Col id='city-destination-name'>{this.getAddress(this.state.destination, 'city-destination-name')}</Col>
         </Row>
 
